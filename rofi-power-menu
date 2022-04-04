@@ -1,0 +1,1 @@
+rofi -show power-menu -modi power-menu:/opt/Ibin/scripts/rofi-power/rofi-power-menu
