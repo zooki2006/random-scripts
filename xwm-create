@@ -1,0 +1,59 @@
+#!/bin/sh
+wmfile=~/.xwm
+remove=0
+if [ $1 = "-r" ] || [ $1 = "-R" ]
+then 
+	wmname=$2
+	remove=1
+else
+	wmname=$1
+fi
+wmfilecache=$(cat ~/.xwm )
+wmtest=$(cat ~/.xwm | grep ") wm" | grep $wmname)
+echo $wmtest
+if [ "$wmtest" = "" ] && [ $remove = 0 ]
+then
+	echo "not here ... adding"
+	wmnum=$(grep "xwmlist" $wmfile | sed 's,xwmlist=,,' | sed "s,',,g" )
+	newwmnum=$(($wmnum+1))
+	#echo $wmnum
+	sed -i "s,xwmlist='$wmnum',xwmlist='$newwmnum'," $wmfile
+	listwm='$listwm'
+	count="$wmname@7count"
+	sedlistwm=$(echo listwm=@4$listwm @5@8$count@6 $wmname@4 @@@@ rm $wmname)
+	#sed -i "s,#listwm='',#listwm=''\nlistwm='($newwmnum) $wmname $listwm' # rm $wmname," $wmfile
+	#sed -i "s,#listwm='',#listwm=''\n$sedlistwm," $wmfile
+	sed -i "s,#listwm='',$sedlistwm\n#listwm=''," $wmfile
+	wmcount='$wmcount+1'
+	wmcount2='$wmcount'
+	sed -i "s,#wmcount here,wmcount=@8@5@5$wmcount@6@6 # rm $wmname \n$count=$wmcount2 @@@@ rm $wmname \n#wmcount here," $wmfile
+	sed -i "s,@@@@,#,g" $wmfile
+	sed -i 's,@4,",g' $wmfile
+	sed -i 's,@5,(,g' $wmfile
+	sed -i 's,@6,),g' $wmfile
+	#sed -i "s,    #replace|script    ) wm='wmhere';;,    #replace|script    ) wm='wmhere';;\n    $newwmnum|$wmname    ) wm='$wmname';;," $wmfile
+	sed -i "s,#replace|script    ) wm='wmhere',    @8$count|$wmname  ) wm='$wmname' # rm $wmname \n            lock='true' # rm $wmname \n            wall='true' # rm $wmname \n            polkit='true' # rm $wmname \n            xrootstat='false' # rm $wmname \n            ;; # rm $wmname \n#replace|script    ) wm='wmhere'," $wmfile
+
+	sed -i "s,@7,,g" $wmfile
+	sed -i "s,@8,$,g" $wmfile
+else
+	if [ $remove = 1 ] && ! [ "$wmtest" = "" ]
+	then
+		echo "remove $wmname"
+		cat $wmfile | grep -v "# rm $wmname" > temp && mv temp $wmfile
+		chmod +x $wmfile
+		wmnum=$(grep "xwmlist" $wmfile | sed 's,xwmlist=,,' | sed "s,',,g" )
+		newwmnum=$(($wmnum-1))
+		sed -i "s,xwmlist='$wmnum',xwmlist='$newwmnum'," $wmfile
+
+
+	else
+		if [ $remove = 1 ] && [ "$wmtest" = "" ]
+		then
+			echo "not here ... unable to remove"
+		else
+			echo "already here"
+		fi
+	fi
+fi
+
