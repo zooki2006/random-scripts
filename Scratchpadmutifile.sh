@@ -3,7 +3,7 @@ all_args=("$@")
 arg1=$1
 arg2=$2
 arg3="${all_args[@]:2}"
-file=~/.scrachpad/$arg2
+file=~/.scratchpad/$arg2
 case $arg1 in
 		"title")
 				id=$(xdo id -n $arg2)
