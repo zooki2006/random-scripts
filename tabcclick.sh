@@ -10,6 +10,9 @@
 #
 # Functions
 #
+wid=$(xprop -root _NET_ACTIVE_WINDOW | sed "s,_NET_ACTIVE_WINDOW(WINDOW): window id # ,," | sed "s, ,,g")
+xprop
+tabbedid=$(xprop -root _NET_ACTIVE_WINDOW | sed "s,_NET_ACTIVE_WINDOW(WINDOW): window id # ,," | sed "s, ,,g")
 
 # Get wid of root window
 get_root_wid () {
@@ -34,28 +37,14 @@ get_class () {
 #
 # Main Program
 #
-
-
-cmd=$1
-
-if [ "$cmd" = "add" ] || [ "$cmd" = "remove" ]
+if [ $2 = "-n" ] 
 then
-
-	if [ $3 = "-n" ]
-	then
-		tabbedname="$4"
-	else
-		tabbedname="awesometabbed"
-	fi
+	tabbedname="$3"
 else
-	if [ $2 = "-n" ] 
-	then
-		tabbedname="$3"
-	else
-		tabbedname="awesometabbed"
-	fi
+	tabbedname="awesometabbed"
 fi
 
+cmd=$1
 if [ "$cmd" = "autoadd" ]
 then
 
@@ -85,20 +74,9 @@ case $cmd in
 		xdotool windowreparent $wid $tabbedid
 		;;
 	autoremove)
-		#tabbedid=$(wmctrl -lx | grep "$tabbedname.tabbed" | awk '{ print $1 }')
-		tabbedid=$(xprop -root _NET_ACTIVE_WINDOW | sed "s,_NET_ACTIVE_WINDOW(WINDOW): window id # ,," | sed "s, ,,g")
+		tabbedid=$(wmctrl -lx | grep "$tabbedname.tabbed" | awk '{ print $1 }')
 		wid=$(xwininfo -id $tabbedid -children | sed -n '/[0-9]\+ \(child\|children\):/,$s/ \+\(0x[0-9a-z]\+\).*/\1/p' | awk 'NR == 1')
-    		if [ -z $wid ]
-		then
-			exit
-		fi
-		tabbedcheck=$(xdotool getwindowclassname $tabbedid)
-		#notify-send "$tabbedcheck"
-		if ! [ "$tabbedcheck" = "tabbed" ]
-		then
-			exit
-		fi
-		#tabbedid=$(bspc query -N -n focused)
+    		#tabbedid=$(bspc query -N -n focused)
 		xdotool windowreparent $wid $(get_root_wid)
 		nextchild=$(xwininfo -id $tabbedid -children | sed -n '/[0-9]\+ \(child\|children\):/,$s/ \+\(0x[0-9a-z]\+\).*/\1/p' | awk 'NR == 1')
 		;;

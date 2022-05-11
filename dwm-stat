@@ -16,7 +16,20 @@ do
         csum=$new_csum
         dwm
     else
-        exit 0
+
+	#dwm
+	choice=$(echo "Cancel\ni3\nquit" | dmenu)
+	case "$choice" in
+		"Cancel") dwm ;;
+		"i3") i3 ;;
+		"quit") exit ;;
+	esac
+#run script
+
+
+
+
+       # exit 0
     fi
     new_csum=$(sha1sum $(which dwm))
     sleep 0.5
