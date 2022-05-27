@@ -1,0 +1,16 @@
+#!/bin/sh
+
+bluelight=3500
+
+
+SCTSTATE_PATH=~/.cache/bluelighter-state
+
+sctstate=$([ -f $SCTSTATE_PATH ] && cat $SCTSTATE_PATH || echo 0)
+
+
+if [ $sctstate = '0' ]; then
+sct $bluelight
+else
+sct 0
+fi
+sctstate=$((!$sctstate)); echo $sctstate > $SCTSTATE_PATH 
