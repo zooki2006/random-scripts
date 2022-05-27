@@ -55,3 +55,4 @@ case $1 in
     send_notification
     ;;
 esac
+pkill -RTMIN+22 dwmblocks
