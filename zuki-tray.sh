@@ -1,6 +1,13 @@
 #!/bin/sh
 tray=""
 arg1="$1"
+
+
+if [ "$BLOCK_BUTTON" = 1 ]
+then
+	dmenu-tray2.sh
+fi
+
 psa=$(ps -A | awk '{print $4}')
 while read trayitems
 do
@@ -24,11 +31,6 @@ do
 		fi
 	fi
 done < ~/tray.conf
-
-if [ "$BLOCK_BUTTON" = 1 ]
-then
-	dmenu-tray2.sh
-fi
 
 
 if [ "$arg1" = 1 ]
