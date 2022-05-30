@@ -23,7 +23,8 @@ echo "$id"
 if [ "$id" = "" ] 
 then
 
-	echo "exec $arg3"
+	$arg3
+	echo "" > $file
 
 else
 	state=$(xprop -id "$id" WM_STATE | grep 'window state' | awk '{print $3}')
