@@ -1,0 +1,14 @@
+#!/bin/sh
+case $BLOCK_BUTTON in
+#	1) Scratchpadfiledynamic.sh ;;
+	1) Scratchpaddynamiclist.sh ;;
+	2) Scratchpaddynamiclist.sh ;;
+	3) notify-send "shows num of all dynamic scratchpad" ;;
+	4) Scratchpadfiledynamic.sh 1 ;;
+	5) Scratchpadfiledynamic.sh 0 ;;
+esac
+output=$(cat ~/.scratchpad/dynamic/dynamicnum)
+if ! [ "$output" = 0 ]
+then
+echo "[$output]"
+fi
