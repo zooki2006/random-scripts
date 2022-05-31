@@ -8,7 +8,4 @@ case $BLOCK_BUTTON in
 	5) Scratchpadfiledynamic.sh 0 ;;
 esac
 output=$(cat ~/.scratchpad/dynamic/dynamicnum)
-if ! [ "$output" = 0 ]
-then
 echo "[$output]"
-fi
