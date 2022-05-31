@@ -20,7 +20,9 @@ echo $arg3
 
 if [ "$id" == "" ]
  then
-		 exec $arg3;
+		 sleep 0.3 && uptray.sh &
+		 $arg3
+		 uptray.sh
 else
 		if [ "$(printf '%s' "$GDMSESSION" | grep bspwm | wc -l)" == "1" ]
 		then

@@ -21,7 +21,10 @@ echo $arg3
 
 if [ "$id" == "" ]
  then
-		 exec $arg3;
+	 	
+		 sleep 0.3 && uptray.sh &
+		 $arg3
+		 uptray.sh
 		 echo "1" > $file
 else
 		if [ "$(printf '%s' "$GDMSESSION" | grep bspwm | wc -l)" == "1" ]
@@ -31,13 +34,14 @@ else
 				#state=$(xprop -id "$id" WM_STATE | grep 'window state' | awk '{print $3}')
 				touch $file
 				state=$(cat $file)
+				#notify-send "$state"
 				if [ "$state" == "0" ]
 				then
 						if [ "$arg1" == "class" ]
 						then
 							xdo show -a $arg2
 						else
-							xdo show -N $arg2
+							xdo show -n $arg2
 						fi
 						echo "1" > $file
 				else
@@ -45,7 +49,7 @@ else
 						then
 							xdo hide -a $arg2
 						else
-							xdo hide -N $arg2
+							xdo hide -n $arg2
 						fi
 						echo "0" > $file
 				fi
