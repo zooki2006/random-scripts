@@ -4,29 +4,19 @@ arg2="$2"
 arg3="$3"
 class1="$arg1"
 class2="$arg2"
-xpropalt () {
-winid=$(xprop -root _NET_CLIENT_LIST | sed 's!,!\n!g' | sed 's!#!\n!' | grep -v "_NET")
-wincid=$(echo "$winid" | wc -l)
-#classid=$(xprop -id 0xe0002d WM_CLASS | sed 's!=!\n!' | grep -v "WM_CLASS" | sed 's!"!!g' | sed 's#,##')
-for i in `seq $wincid`
-do
-	classid=$(xprop -id $(echo "$winid" | awk "NR==$i") WM_CLASS | sed 's!,!!g' | sed 's!=!\n!' | grep -v "WM_CLASS" | sed 's!"!!g')
-	if [ "$classid" = " $1 $2" ]
-	then 
-		echo "$(echo "$winid" | awk "NR==$i" | sed 's! !!')"
-	fi
-done
+xpropgrab () {
+class1=$(xdo id -n "$1")
+class2=$(xdo id -N "$2")
+xprop -root _NET_CLIENT_LIST | sed 's!,!\n!g' | sed 's!#!\n!' | grep -v "_NET" | sed 's, ,,' | tr 'a-z' 'A-Z' | sed 's#X#x0#' | grep "$class1" | grep "$class2"
 }
-id=$(xpropalt $class1 $class2)
-#id=$(wmctrl -lx | awk '{ print $1 " " $3 " " }' | grep " $class1.$class2 " | awk '{ print $1 }' | sed 's, ,,g')
 echo "$id"
+id=$(xpropgrab $class1 $class2)
 file=~/.scratchpad/$arg1
 touch $file
 filecon=$(cat $file)
 #echo "t"
 #cat "$file"
 #echo "t"
-
 echo "$id"
 if [ -z "$id" ]  && ! [ -z "$filecon" ] 
 then
