@@ -14,10 +14,15 @@ do
 	echo "$(echo "$winid" | awk "NR==$i") $classid "
 done
 }
+if [ -z "$(which wmctrl)" ]
+then
+id=$(xpropalt | grep "  $class1 $class2 " | awk '{ print $1 }' | sed 's, ,,g')
+else
 id=$(wmctrl -lx | awk '{ print $1 " " $3 " " }' | grep " $class1.$class2 " | awk '{ print $1 }' | sed 's, ,,g')
-#id=$(xpropalt | grep "  $class1 $class2 " | awk '{ print $1 }' | sed 's, ,,g')
+fi
 echo "$id"
 file=~/.scratchpad/$arg1
+touch $file
 filecon=$(cat $file)
 #echo "t"
 #cat "$file"
