@@ -17,8 +17,8 @@ do
 	fi
 done
 }
-#id=$(xpropalt $class1 $class2)
-id=$(wmctrl -lx | awk '{ print $1 " " $3 " " }' | grep " $class1.$class2 " | awk '{ print $1 }' | sed 's, ,,g')
+id=$(xpropalt $class1 $class2)
+#id=$(wmctrl -lx | awk '{ print $1 " " $3 " " }' | grep " $class1.$class2 " | awk '{ print $1 }' | sed 's, ,,g')
 echo "$id"
 file=~/.scratchpad/$arg1
 touch $file
