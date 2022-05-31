@@ -6,12 +6,11 @@ class1="$arg1"
 class2="$arg2"
 id=$(wmctrl -lx | awk '{ print $1 " " $3 " " }' | grep " $class1.$class2 " | awk '{ print $1 }' | sed 's, ,,g')
 echo "$id"
-#read testing
 file=~/.scratchpad/$arg1
 filecon=$(cat $file)
-echo "t"
-cat "$file"
-echo "t"
+#echo "t"
+#cat "$file"
+#echo "t"
 
 echo "$id"
 if [ -z "$id" ]  && ! [ -z "$filecon" ] 
