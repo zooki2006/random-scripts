@@ -1,11 +1,15 @@
 #!/bin/sh
 options="exit"
+psa=$(ps a | grep -v "tty*" | awk '{print $5  $6}')
 while read trayitems
 do
 	program=$(echo $trayitems | awk '{print $1}')
-	trayname=$(echo $trayitems | awk '{print $2}')
+	#trayname=$(echo $trayitems | awk '{print $2}')
+	#psas=$(echo "$psa" | grep -i ^"$program"$)
+	#if ! [ "$psas" = "" ]
 	if pgrep -x "$program" > /dev/null
-		then
+	then
+                    	trayname=$(echo $trayitems | awk '{print $2}')
 			options="kill $program / $trayname \n$options"
 	fi
 
@@ -17,7 +21,9 @@ do
 	dmenuname=$(echo $trayextras | awk '{print $1}')
 	progmamcon=$(echo $trayextras | awk '{print $2}')
 	reprogmamcon=$(echo $trayextras | awk '{print $3}')
-	if pgrep -x "$progmamcon" > /dev/null && ! pgrep -x "$reprogmamcon" > /dev/null
+	psas=$(echo "$psa" | grep $program)
+	if ! [ "$psas" = "" ]
+	#if pgrep -x "$progmamcon" > /dev/null && ! pgrep -x "$reprogmamcon" > /dev/null
 	then 
 		options="spawn $dmenuname \n$options"
 	fi
