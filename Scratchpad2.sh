@@ -11,15 +11,14 @@ wincid=$(echo "$winid" | wc -l)
 for i in `seq $wincid`
 do
 	classid=$(xprop -id $(echo "$winid" | awk "NR==$i") WM_CLASS | sed 's!,!!g' | sed 's!=!\n!' | grep -v "WM_CLASS" | sed 's!"!!g')
-	echo "$(echo "$winid" | awk "NR==$i") $classid "
+	if [ "$classid" = " $1 $2" ]
+	then 
+		echo "$(echo "$winid" | awk "NR==$i" | sed 's! !!')"
+	fi
 done
 }
-if [ -z "$(which wmctrl)" ]
-then
-id=$(xpropalt | grep "  $class1 $class2 " | awk '{ print $1 }' | sed 's, ,,g')
-else
+#id=$(xpropalt $class1 $class2)
 id=$(wmctrl -lx | awk '{ print $1 " " $3 " " }' | grep " $class1.$class2 " | awk '{ print $1 }' | sed 's, ,,g')
-fi
 echo "$id"
 file=~/.scratchpad/$arg1
 touch $file
