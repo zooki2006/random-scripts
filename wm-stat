@@ -10,6 +10,19 @@ then
 fi
 echo "#this is a file for keeping track of dynamic scratchpads" > ~/.scratchpad/dynamic/dynamic
 # relaunch DWM if the binary changes, otherwise bail
+
+
+
+if [ "$cmus_use" = "" ] 
+then
+	while true
+	do
+	$wm
+	done
+else
+
+
+
 csum=""
 new_csum=$(sha1sum $(which $wm))
 while true
@@ -37,3 +50,4 @@ do
     new_csum=$(sha1sum $(which $wm))
     sleep 0.5
 done
+fi
