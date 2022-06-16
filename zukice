@@ -1,0 +1,13 @@
+#!/bin/sh
+pause="$1"
+echo "$pause"
+PD=$(xprop _NET_WM_PID | sed "s#=#\n#" | tail -1 | sed 's# ##')
+echo "$PD"
+if [ "$pause" = "0" ] 
+then
+	kill -CONT "$PD"
+elif [ "$pause" = "1" ]
+then
+	kill -STOP "$PD"
+fi
+
