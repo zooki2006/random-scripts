@@ -1,9 +1,0 @@
-#!/bin/sh
-choice="web"
-case "$choice" in
-	"webcord") webcord;;
-	"web") chromium --profile-directory=Default --app-id=magkoliahgffibhgfkmoealggombgknl ;;
-	"quit") exit ;;
-esac
-
-#chromium --profile-directory=Default --app-id=magkoliahgffibhgfkmoealggombgknl
