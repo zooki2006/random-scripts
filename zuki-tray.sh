@@ -11,14 +11,14 @@ fi
 psa=$(ps -A | awk '{print $4}')
 while read trayitems
 do
-       	program=$(echo $trayitems | awk '{print $1}')	
+       	program=$(echo "$trayitems" | awk '{print $1}')	
 	#if pgrep -x "$program" > /dev/null
 	psas=$(echo "$psa" | grep -i ^"$program"$)
 	#if $psas = ""  > /dev/null
 	#echo "$psas"
 	if ! [ "$psas" = "" ]
 	then
-       		trayname=$(echo $trayitems | awk '{print $2}')
+       		trayname=$(echo "$trayitems" | awk '{print $2}')
 		#temptray="[$trayname]"
 		#tray="$temptray $tray"
 		if [ "$arg1" = 1 ]
