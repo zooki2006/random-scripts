@@ -1,0 +1,9 @@
+#!/bin/sh
+helpmenu="enter blue light filter val"
+bluelight="$(echo "$helpmenu" | dmenu -p "sct")"
+if [ "$helpmenu" != "$bluelight" ] && ! [ -z $bluelight ]
+then
+	sct $bluelight
+fi
+
+
