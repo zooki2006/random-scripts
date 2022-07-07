@@ -1,8 +1,21 @@
 #!/bin/sh
 pause="$1"
+auto="$2"
 echo "$pause"
-PD=$(xprop _NET_WM_PID | sed "s#=#\n#" | tail -1 | sed 's# ##')
+if [ "$auto" = "1" ]
+then
+	PD=$(xprop -id $(xprop -root _NET_ACTIVE_WINDOW | sed "s,#,\n," | tail -1 | sed 's# ##') _NET_WM_PID | sed "s#=#\n#" | tail -1 | sed 's# ##')
+else
+	PD=$(xprop _NET_WM_PID | sed "s#=#\n#" | tail -1 | sed 's# ##')
+fi
 echo "$PD"
+
+
+if [ -z "$PD" ] 
+then
+exit
+fi
+
 if [ "$pause" = "0" ] 
 then
 	kill -CONT "$PD"
