@@ -1,0 +1,17 @@
+#!/bin/sh
+arg1="$1"
+aur="https://aur.archlinux.org"
+copysyntax="git clone -q"
+
+
+$copysyntax $aur/$arg1.git
+cd $arg1
+grep "pkgdesc" PKGBUILD | head -1 | sed "s,pkgdesc,,g" | sed "s,=,,"
+
+read -p "INSTALL?[y/N]"  install
+
+echo "install = $install"
+if [ "$install" = "Y" ] || [ "$install" = "y" ]
+then
+	makepkg -si
+fi
