@@ -1,0 +1,8 @@
+#!/bin/sh
+Xwayland -retro -noreset -fakescreenfps 160 :12 &
+export DISPLAY=":12"
+export SDL_VIDEODRIVER=x11
+sleep 2
+$HOME/src/dwmsteam/dwm/dwm &
+steam
+exit
