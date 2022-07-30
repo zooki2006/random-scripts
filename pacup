@@ -1,0 +1,4 @@
+#!/bin/sh
+sudo pacman -Syu
+echo "$(tput setaf 4):: $(tput sgr0)Syncing aur..."
+aur sync -u
