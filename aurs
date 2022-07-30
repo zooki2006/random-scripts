@@ -1,0 +1,6 @@
+#!/bin/sh
+pkg="$(curl -s https://aur.archlinux.org/packages.gz | gzip -cd | sort | fzf)"
+if [ -n "$pkg" ]
+then
+	aur sync "$pkg"
+fi
