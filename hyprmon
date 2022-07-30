@@ -1,0 +1,13 @@
+#!/bin/bash 
+while [ 1 == 1 ]
+do
+refresh="$(hyprctl monitors | head -2 | sed 's,@,\n,' | tail -1 | awk '{print $1}')"
+echo "$refresh"
+if [ -z "$refresh" ] || [ "$refresh" = "60.000000" ]
+then
+	hyprctl keyword monitor DP-3,1920x1080@160,0x0,1
+	sleep 1
+else
+	exit
+fi
+done
