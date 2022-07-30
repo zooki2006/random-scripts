@@ -1,0 +1,9 @@
+#!/bin/sh
+steamlibdir="$HOME/.steam/root/ubuntu12_32"
+cd "$steamlibdir"
+missinglibs="$(file * | grep ELF | cut -d: -f1 | LD_LIBRARY_PATH=. xargs ldd | grep 'not found' | sort | uniq | sed "s,=> not found,\n,")"
+for lib in "$missinglibs"
+do
+	sudo pacman -S "$(pacman -F $lib | grep "multilib" | sed 's,multilib/,,g' | sed 's, ,\n,' | head -1)"	
+done
+
