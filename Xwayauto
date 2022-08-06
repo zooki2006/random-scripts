@@ -1,0 +1,3 @@
+#!/bin/sh
+Xwayland -retro -noreset -fakescreenfps 160 :12 &
+export DISPLAY=":12"
