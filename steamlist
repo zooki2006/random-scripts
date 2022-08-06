@@ -1,0 +1,9 @@
+#!/bin/sh
+steamdirtemplate="steamapps/common"
+addsteamdir () {
+	echo "$(tput setaf 2)$1$(tput setaf 4)"
+	ls "$1"
+}
+addsteamdir $HOME/.local/share/Steam/$steamdirtemplate
+addsteamdir /mnt/harddrive/SteamLibrary/$steamdirtemplate
+addsteamdir /mnt/ssddrive/SteamLibrary/$steamdirtemplate
