@@ -1,4 +1,6 @@
 #!/bin/sh
-sudo pacman -Syu
+sudo pacman -Sy archlinux-keyring --needed
+#sudo pacman -Syu
+sudo pacman -Su
 echo "$(tput setaf 4):: $(tput sgr0)Syncing aur..."
 aur sync -u
