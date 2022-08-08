@@ -1,2 +1,5 @@
 #!/bin/sh
+scriptname="dman (dmenu man menu)"
+scriptdisc="script to search man pages with dmenu"
+source zconf
 man $(apropos --long . | $dmenu -i -l 30 | awk '{print $2, $1}' | tr -d '()')
