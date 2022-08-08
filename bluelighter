@@ -1,4 +1,7 @@
 #!/bin/sh
+scriptname="bluelighter"
+scriptdisc="script for applying bluelight using sct on xorg"
+source zconf
 
 bluelight=3500
 

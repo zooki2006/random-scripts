@@ -1,4 +1,7 @@
 #!/bin/sh
+scriptname="dmenu bluelight"
+scriptfisc="script to use dmenu and pipe input into sct for bluelight"
+source zconf
 helpmenu="enter blue light filter val"
 bluelight="$(echo "$helpmenu" | dmenu -p "sct")"
 if [ "$helpmenu" != "$bluelight" ] && ! [ -z $bluelight ]

@@ -1,4 +1,9 @@
 #!/bin/sh
+scriptname="pacman update script"
+scriptdisc="script to update pacman and aurutils and others"
+source zconf
+
+
 sudo pacman -Sy archlinux-keyring --needed
 #sudo pacman -Syu
 sudo pacman -Su

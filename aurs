@@ -1,4 +1,7 @@
 #!/bin/sh
+scriptname="aur search"
+scriptdisc="script for search aur and install with aurtools"
+source zconf
 pkg="$(curl -s https://aur.archlinux.org/packages.gz | gzip -cd | sort | fzf)"
 if [ -n "$pkg" ]
 then

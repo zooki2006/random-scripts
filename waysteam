@@ -1,4 +1,7 @@
 #!/bin/sh
+scriptname="way-steam"
+scriptdisc="script for testing starting steam in Xwayland window"
+source zconf
 Xwayland -retro -noreset -fakescreenfps 160 :12 &
 export DISPLAY=":12"
 export SDL_VIDEODRIVER=x11

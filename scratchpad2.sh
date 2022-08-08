@@ -1,4 +1,8 @@
 #!/bin/sh
+scriptname="scratchpad 2 script"
+scriptdisc="script for scratch pads on xorg"
+source zconf
+
 arg1="$1"
 arg2="$2"
 arg3="${all_args[@]:2}"

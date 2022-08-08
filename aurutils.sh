@@ -1,4 +1,8 @@
 #!/bin/sh
+scriptname="aurutils install"
+scriptdisc="aurutils install script"
+source zconf
+
 mkdir "$HOME/aur"
 cd "$HOME/aur"
 git clone https://aur.archlinux.org/aurutils.git
