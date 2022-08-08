@@ -1,4 +1,9 @@
 #!/usr/bin/env bash
+scriptname="volume control"
+scriptdisc="script to control volume with pulse audio"
+source zconf
+
+
 
 # You can call this script like this:
 # $ ./volumeControl.sh up
