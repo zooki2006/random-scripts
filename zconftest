@@ -1,0 +1,4 @@
+#!/bin/sh
+scriptname="zconf test script"
+scriptdisc="script for testing zconf"
+source zconf

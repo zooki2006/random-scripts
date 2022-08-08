@@ -1,0 +1,17 @@
+#!/bin/sh
+dmenu="dmenu"
+arg="$1"
+
+
+
+if [ "$arg" = "--help" ] || [ "$arg" = "-h" ] 
+then
+	echo "-- help --"
+	echo "$scriptname"
+	if [ -n "$scriptdisc" ]
+	then
+		echo "-- discript --"
+		echo "$scriptdisc"
+	fi
+	exit
+fi
