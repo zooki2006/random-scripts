@@ -1,5 +1,13 @@
 #!/bin/sh
-dmenu="dmenu"
+
+if [ -z "$WAYLAND_DISPLAY" ]
+then
+	dmenu="dmenu"
+else
+	dmenu="bemenu"
+	wayland=1
+fi
+
 arg="$1"
 
 
