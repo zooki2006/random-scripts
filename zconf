@@ -21,5 +21,10 @@ then
 		echo "-- discript --"
 		echo "$scriptdisc"
 	fi
+	if [ -n "$scriptreq" ]
+	then
+		echo "-- scriptreq --"
+		echo "$scriptreq"
+	fi
 	exit
 fi
