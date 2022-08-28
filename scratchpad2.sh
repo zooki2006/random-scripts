@@ -7,7 +7,7 @@ source zconf
 
 arg1="$1"
 arg2="$2"
-arg3="${all_args[@]:2}"
+arg3="$(echo "$@" | awk '{$1=$2=""; print}')"
 if [ "$arg1" = "NULL" ]
 then
 	id=$(xprop -root _NET_CLIENT_LIST | sed 's!,!\n!g' | sed 's!#!\n!' | grep -v "_NET" | sed 's, ,,' | grep -io "$class2")
