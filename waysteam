@@ -2,10 +2,23 @@
 scriptname="way-steam"
 scriptdisc="script for testing starting steam in Xwayland window"
 source zconf
-Xwayland -retro -noreset -fakescreenfps 160 :12 &
-export DISPLAY=":12"
+
+
+#vars
 export SDL_VIDEODRIVER=x11
+Xwayland=0
+
+if [ "$Xwayland" = 1 ]
+then
+export DISPLAY=":12"
+Xwayland -retro -noreset -fakescreenfps 160 :12 &
+Xwayland_pid=$!
 sleep 2
 $HOME/src/dwmsteam/dwm/dwm &
+dwm_pid=$!
 steam
-exit
+kill -kill $Xwayland_pid
+kill $dwm_pid
+else
+steam
+fi
