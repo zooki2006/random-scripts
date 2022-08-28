@@ -1,0 +1,11 @@
+#!/bin/sh
+pid="$(swaymsg -t get_tree | jq '.. | select(.type?) | select(.focused==true) | .pid')"
+pause="$(ps -p "$pid" -o stat,pid | grep "Tl")"
+if [ -n "$pause" ] 
+then
+	#notify-send 'kill -CONT "$pid"'
+	kill -CONT "$pid"
+else
+	#notify-send 'kill -STOP "$pid"'
+	kill -STOP "$pid"
+fi
