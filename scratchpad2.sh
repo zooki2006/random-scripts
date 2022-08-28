@@ -1,6 +1,8 @@
 #!/bin/sh
 scriptname="scratchpad 2 script"
 scriptdisc="script for scratch pads on xorg"
+scripthowto="arg1 arg2 arg3"
+scriptreq="script requres xdo and xprop"
 source zconf
 
 arg1="$1"
