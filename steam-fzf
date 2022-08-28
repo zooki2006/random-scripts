@@ -1,0 +1,35 @@
+#!/bin/sh
+if [ -z "$1" ]
+then
+	MENU="fzf"
+else
+	MENU="$1"
+fi
+
+steamvdfdir="$HOME/.local/share/Steam/steamapps/libraryfolders.vdf"
+steamvdf="$(cat $steamvdfdir)"
+
+
+STEAMDIRS="$(echo "$steamvdf" | grep "path" | awk '{print $2}' | sed 's#"##g')"
+#STEAMAPPS=~/.local/share/Steam/steamapps
+TABLE=""
+for STEAM in $STEAMDIRS; do
+STEAMAPPS="$STEAM/steamapps"
+for file in $(ls $STEAMAPPS/*.acf -1v); do
+    ID=$(cat "$file" | grep '"appid"' | head -1 | sed -r 's/[^"]*"appid"[^"]*"([^"]*)"/\1/')
+    NAME=$(cat "$file" | grep '"name"' | head -1 | sed -r 's/[^"]*"name"[^"]*"([^"]*)"/\1/')
+    TABLE="$TABLE \n$NAME \n$ID"
+done
+done
+
+steamname="$(printf "$TABLE" | sed '1~2d' | $MENU)"
+#steamname="$(printf "$TABLE" | sed '1~2d' | fzf)"
+
+
+if [ -n "$steamname" ]
+then
+
+steamid="$(printf "$TABLE" | grep -wA1 "$steamname" | grep -vw "$steamname")"
+
+steam steam://rungameid/$steamid
+fi
