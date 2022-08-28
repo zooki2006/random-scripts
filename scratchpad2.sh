@@ -24,6 +24,11 @@ if [ -z "$id" ]
 then
 	id=$(xprop -root _NET_CLIENT_LIST | sed 's!,!\n!g' | sed 's!#!\n!' | grep -v "_NET" | sed 's, ,,' | grep -io "$class1" | grep -io "$class2")
 fi
+if [ -z "$1" ]
+then 
+	echo "no args"
+	exit 0
+fi
 if [ -z "$XDG_CACHE_HOME" ] 
 then
 scratchpaddir="$HOME/.cache"
