@@ -24,7 +24,14 @@ if [ -z "$id" ]
 then
 	id=$(xprop -root _NET_CLIENT_LIST | sed 's!,!\n!g' | sed 's!#!\n!' | grep -v "_NET" | sed 's, ,,' | grep -io "$class1" | grep -io "$class2")
 fi
-file=~/.scratchpad/$arg1
+if [ -z "$XDG_CACHE_HOME" ] 
+then
+scratchpaddir="$HOME/.cache"
+else
+scratchpaddir="$XDG_CACHE_HOME"
+fi
+file="$scratchpaddir/scrachpad/$arg1"
+mkdir -p "$scratchpaddir/scrachpad"
 touch "$file"
 filecon=$(cat "$file")
 echo "$id"
