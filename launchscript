@@ -1,0 +1,24 @@
+#!/bin/sh
+
+scriptname="launch script"
+scriptdisc='script to launch programs in $PATH with extras'
+source zconf
+
+args="$@"
+
+test="$({ set -f; IFS=:; for d in $PATH; do set +f; [ -n "$d" ] || d=.; for f in "$d"/.[!.]* "$d"/..?* "$d"/*; do [ -f "$f" ] && [ -x "$f" ] && printf '%s\n' "${f##*/}"; done; done; } | sort)"
+launch="$(echo "$test" | "$args")"
+case $launch in
+  heroic)
+    heroic --ozone-platform-hint=auto;;
+  signal-desktop)
+    signal-desktop --ozone-platform-hint=auto;;
+  ripcord)
+    env QT_QPA_PLATFORM_PLUGIN_PATH=/usr/lib/qt/plugins ripcord;;
+  steam)
+    waysteam;;
+  *)
+    $launch
+    ;;
+esac
+
