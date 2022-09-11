@@ -4,11 +4,29 @@ scriptname="launch script"
 scriptdisc='script to launch programs in $PATH with extras'
 source zconf
 
-args="$@"
+
+
 
 test="$({ set -f; IFS=:; for d in $PATH; do set +f; [ -n "$d" ] || d=.; for f in "$d"/.[!.]* "$d"/..?* "$d"/*; do [ -f "$f" ] && [ -x "$f" ] && printf '%s\n' "${f##*/}"; done; done; } | sort)"
-launch="$(echo "$test" | "$args")"
-case $launch in
+launch="$(echo "$test" | "$@")"
+
+set -- $launch
+arg1=($launch)
+if [ "$#" != "1" ]
+then
+x="$launch"
+arg2="${x#* }"
+arg2="${x#* }"
+#else
+#arg2="arg2 not set"
+fi
+
+echo "launch=$launch"
+echo "arg1=$arg1"
+echo "arg2=$arg2"
+
+
+case "$arg1" in
   heroic)
     heroic --ozone-platform-hint=auto;;
   signal-desktop)
