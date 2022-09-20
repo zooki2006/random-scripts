@@ -4,10 +4,15 @@ scriptdisc="script to update all things"
 source zconf
 
 
+
+#UPDATETHEME="$(tput setaf 4):: $(tput sgr0)"
+UPDATETHEME="$(tput setaf 2)==> $(tput sgr0)"
+
 if [ -z "$ROOTTOOL" ]
 then
 ROOTTOOL="sudo"
 fi
+
 pacmanupdate(){
 $ROOTTOOL pacman -Sy archlinux-keyring --needed --noconfirm
 $ROOTTOOL pacman -Su
@@ -18,7 +23,8 @@ if command -v "$1" > /dev/null 2>&1
 then
 	if [ -n "$3" ]
 	then
-	echo "$(tput setaf 4):: $(tput sgr0) $3"
+	echo "$UPDATETHEME$3"
+	#echo "$(tput setaf 4):: $(tput sgr0)$3"
 	fi
 	$2
 fi
