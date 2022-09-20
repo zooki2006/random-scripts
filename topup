@@ -20,7 +20,7 @@ then
 	$2
 fi
 }
-checkupdate "pacman" "pacmanupdate"
-checkupdate "dnf" "$ROOTTOOL dnf upgrade"
+checkupdate "pacman" "pacmanupdate" "Starting pacman upgrade"
+checkupdate "dnf" "$ROOTTOOL dnf upgrade" "Starting dnf upgrade"
 checkupdate "aur" "aur sync -u" "Syncthing aur..."
 checkupdate "flatpak" "flatpak update" "updating flatpaks..."
