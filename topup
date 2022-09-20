@@ -3,8 +3,11 @@ scriptname="update script"
 scriptdisc="script to update all things"
 source zconf
 
-"${ROOTTOOL:=sudo}"
 
+if [ -z "$ROOTTOOL" ]
+then
+ROOTTOOL="sudo"
+fi
 pacmanupdate(){
 $ROOTTOOL pacman -Sy archlinux-keyring --needed --noconfirm
 $ROOTTOOL pacman -Su
