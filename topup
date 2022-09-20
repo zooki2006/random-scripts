@@ -1,0 +1,26 @@
+#!/bin/sh
+scriptname="update script"
+scriptdisc="script to update all things"
+source zconf
+
+"${ROOTTOOL:=sudo}"
+
+pacmanupdate(){
+$ROOTTOOL pacman -Sy archlinux-keyring --needed --noconfirm
+$ROOTTOOL pacman -Su
+}
+
+checkupdate(){
+if command -v "$1" > /dev/null 2>&1
+then
+	if [ -n "$3" ]
+	then
+	echo "$(tput setaf 4):: $(tput sgr0) $3"
+	fi
+	$2
+fi
+}
+checkupdate "pacman" "pacmanupdate"
+checkupdate "dnf" "$ROOTTOOL dnf upgrade"
+checkupdate "aur" "aur sync -u" "Syncthing aur..."
+checkupdate "flatpak" "flatpak update" "updating flatpaks..."
