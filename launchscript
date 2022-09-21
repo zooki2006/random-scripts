@@ -2,9 +2,6 @@
 
 scriptname="launch script"
 scriptdisc='script to launch programs in $PATH with extras'
-
-
-
 . zconf
 
 test="$({ set -f; IFS=:; for d in $PATH; do set +f; [ -n "$d" ] || d=.; for f in "$d"/.[!.]* "$d"/..?* "$d"/*; do [ -f "$f" ] && [ -x "$f" ] && printf '%s\n' "${f##*/}"; done; done; } | sort)"
@@ -25,17 +22,17 @@ echo "launch=$launch"
 echo "arg1=$arg1"
 echo "arg2=$arg2"
 
+launchexcept(){
+if [ "$arg1" = "$1" ]
+then
+	notify-send "running" "$2"
+	nohup $2 &
+	exit
+fi
+}
+launchexcept "herotic" "heroic --ozone-platform-hint=auto $arg2"
+launchexcept "signal-desktop" "signal-desktop --ozone-platform-hint=auto $arg2"
+launchexcept "ripcord" "env QT_QPA_PLATFORM_PLUGIN_PATH=/usr/lib/qt/plugins ripcord $arg2"
+launchexcept "steam" "env SDL_VIDEODRIVER=x11 steam $arg2"
 
-case "$arg1" in
-  heroic)
-    heroic --ozone-platform-hint=auto $arg2 & disown;;
-  signal-desktop)
-    signal-desktop --ozone-platform-hint=auto $arg2 & disown;;
-  ripcord)
-    env QT_QPA_PLATFORM_PLUGIN_PATH=/usr/lib/qt/plugins ripcord $arg2 & disown;;
-  steam)
-    env SDL_VIDEODRIVER=x11 steam $arg2 & disown;;
-  *)
-    $launch & disown
-    ;;
-esac
+nohup $launch &
