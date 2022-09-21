@@ -28,15 +28,15 @@ echo "arg2=$arg2"
 
 case "$arg1" in
   heroic)
-    heroic --ozone-platform-hint=auto $arg2;;
+    heroic --ozone-platform-hint=auto $arg2 & disown;;
   signal-desktop)
-    signal-desktop --ozone-platform-hint=auto $arg2;;
+    signal-desktop --ozone-platform-hint=auto $arg2 & disown;;
   ripcord)
-    env QT_QPA_PLATFORM_PLUGIN_PATH=/usr/lib/qt/plugins ripcord $arg2;;
+    env QT_QPA_PLATFORM_PLUGIN_PATH=/usr/lib/qt/plugins ripcord $arg2 & disown;;
   steam)
-    env SDL_VIDEODRIVER=x11 steam $arg2;;
+    env SDL_VIDEODRIVER=x11 steam $arg2 & disown;;
   *)
-    $launch
+    $launch & disown
     ;;
 esac
 
