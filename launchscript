@@ -2,10 +2,10 @@
 
 scriptname="launch script"
 scriptdisc='script to launch programs in $PATH with extras'
-source zconf
 
 
 
+. zconf
 
 test="$({ set -f; IFS=:; for d in $PATH; do set +f; [ -n "$d" ] || d=.; for f in "$d"/.[!.]* "$d"/..?* "$d"/*; do [ -f "$f" ] && [ -x "$f" ] && printf '%s\n' "${f##*/}"; done; done; } | sort)"
 launch="$(echo "$test" | "$@")"
@@ -39,4 +39,3 @@ case "$arg1" in
     $launch & disown
     ;;
 esac
-
