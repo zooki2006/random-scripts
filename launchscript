@@ -26,7 +26,7 @@ launchexcept(){
 if [ "$arg1" = "$1" ]
 then
 	notify-send "running" "$2"
-	nohup $2 &
+	nohup "$2" > /dev/null 2>&1
 	exit
 fi
 }
@@ -34,5 +34,4 @@ launchexcept "herotic" "heroic --ozone-platform-hint=auto $arg2"
 launchexcept "signal-desktop" "signal-desktop --ozone-platform-hint=auto $arg2"
 launchexcept "ripcord" "env QT_QPA_PLATFORM_PLUGIN_PATH=/usr/lib/qt/plugins ripcord $arg2"
 launchexcept "steam" "env SDL_VIDEODRIVER=x11 steam $arg2"
-
-nohup $launch &
+nohup $launch > /dev/null 2>&1&
