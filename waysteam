@@ -1,7 +1,7 @@
 #!/bin/sh
 scriptname="way-steam"
 scriptdisc="script for testing starting steam in Xwayland window"
-source zconf
+. zconf
 
 
 #vars
