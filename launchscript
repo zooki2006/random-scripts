@@ -25,7 +25,6 @@ echo "arg2=$arg2"
 launchexcept(){
 if [ "$arg1" = "$1" ]
 then
-	notify-send "running" "$2"
 	nohup "$2" > /dev/null 2>&1
 	exit
 fi
