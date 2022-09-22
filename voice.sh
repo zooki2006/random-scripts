@@ -4,10 +4,15 @@ if ! [ -z "$(pgrep "espeak")" ]
 then
 pkill "espeak"
 fi
-clipboard="$(xclip -o)"
-if ! [ -z "$clipboard" ]
+if [ "$WAYLAND_DISPLAY" ]
 then
-	$syntax "$(xclip -o)"
+clipboard="$(wl-paste)"
+else
+clipboard="$(xclip -o)"
+fi
+if [ -n "$clipboard" ]
+then
+	$syntax "$clipboard"
 else
 	$syntax "no items in clipboard"
 fi
