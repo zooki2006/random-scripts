@@ -54,10 +54,10 @@ nohup $1 > /dev/null 2>&1&
 launchexcept(){
 if [ "$arg1" = "$1" ]
 then
-	launchsyntax $2
+	launchsyntax "$2"
 	exit
 fi
 }
 loadconfig
-launchsyntax $launch 
+launchsyntax "$launch"
 exit
