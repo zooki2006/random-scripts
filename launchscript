@@ -18,9 +18,13 @@ launchexcept "heroic" "heroic --ozone-platform-hint=auto $arg2"
 launchexcept "signal-desktop" "signal-desktop --ozone-platform-hint=auto $arg2"
 launchexcept "ripcord" "env QT_QPA_PLATFORM_PLUGIN_PATH=/usr/lib/qt/plugins ripcord $arg2"
 launchexcept "steam" "env SDL_VIDEODRIVER=x11 steam $arg2"
-launchexcept "discord" "firefox www.discord.com/app"
-launchexcept "skype" "firefox web.skype.com"
+launchexcept "discord" "$BROWSER www.discord.com/app"
+launchexcept "skype" "$BROWSER web.skype.com"
 }
+if [ -z "$BROWSER" ]
+then
+	BROWSER="firefox"
+fi
 
 prechoice
 test="$({ set -f; IFS=:; for d in $PATH; do set +f; [ -n "$d" ] || d=.; for f in "$d"/.[!.]* "$d"/..?* "$d"/*; do [ -f "$f" ] && [ -x "$f" ] && printf '%s\n' "${f##*/}"; done; done; })"
