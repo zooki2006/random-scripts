@@ -8,12 +8,11 @@ scriptdisc='script to launch programs in $PATH with extras'
 addoptions(){
 EXTRAOPTIONS="$EXTRAOPTIONS\n$1"
 }
-# if you want to you can add something like ". $HOME/.config/launchscript.conf" and have a shell script there that has the func "prechoice" and "postchoice" to make a config file insted of editting the shell script it's self
-prechoice(){
-addoptions "skype"
-addoptions "discord"
-}
-postchoice(){
+if [ -z "$BROWSER" ]
+then
+	BROWSER="firefox"
+fi
+loadconfig(){
 launchexcept "heroic" "heroic --ozone-platform-hint=auto $arg2"
 launchexcept "signal-desktop" "signal-desktop --ozone-platform-hint=auto $arg2"
 launchexcept "ripcord" "env QT_QPA_PLATFORM_PLUGIN_PATH=/usr/lib/qt/plugins ripcord $arg2"
@@ -21,12 +20,15 @@ launchexcept "steam" "env SDL_VIDEODRIVER=x11 steam $arg2"
 launchexcept "discord" "$BROWSER www.discord.com/app"
 launchexcept "skype" "$BROWSER web.skype.com"
 }
-if [ -z "$BROWSER" ]
+launchexcept(){
+if ! command -v "$1" > /dev/null 2>&1
 then
-	BROWSER="firefox"
+	addoptions "$1"
 fi
+}
 
-prechoice
+
+loadconfig
 test="$({ set -f; IFS=:; for d in $PATH; do set +f; [ -n "$d" ] || d=.; for f in "$d"/.[!.]* "$d"/..?* "$d"/*; do [ -f "$f" ] && [ -x "$f" ] && printf '%s\n' "${f##*/}"; done; done; })"
 launch="$(printf "$test\n$EXTRAOPTIONS" | sort | "$@")"
 
@@ -52,5 +54,5 @@ then
 	exit
 fi
 }
-postchoice
+loadconfig
 nohup $launch > /dev/null 2>&1&
