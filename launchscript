@@ -13,6 +13,7 @@ then
 	BROWSER="firefox"
 fi
 loadconfig(){
+#syntax      "app_name" "exec" "if it should add option if there is no binary in $PATH"
 launchexcept "heroic" "heroic --ozone-platform-hint=auto $arg2"
 launchexcept "signal-desktop" "signal-desktop --ozone-platform-hint=auto $arg2"
 launchexcept "ripcord" "env QT_QPA_PLATFORM_PLUGIN_PATH=/usr/lib/qt/plugins ripcord $arg2"
