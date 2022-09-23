@@ -4,6 +4,14 @@ scriptname="launch script"
 scriptdisc='script to launch programs in $PATH with extras'
 . zconf
 
+postchoice(){
+launchexcept "heroic" "heroic --ozone-platform-hint=auto $arg2"
+launchexcept "signal-desktop" "signal-desktop --ozone-platform-hint=auto $arg2"
+launchexcept "ripcord" "env QT_QPA_PLATFORM_PLUGIN_PATH=/usr/lib/qt/plugins ripcord $arg2"
+launchexcept "steam" "env SDL_VIDEODRIVER=x11 steam $arg2"
+launchexcept "discord" "firefox www.discord.com/app"
+launchexcept "skype" "firefox web.skype.com"
+}
 test="$({ set -f; IFS=:; for d in $PATH; do set +f; [ -n "$d" ] || d=.; for f in "$d"/.[!.]* "$d"/..?* "$d"/*; do [ -f "$f" ] && [ -x "$f" ] && printf '%s\n' "${f##*/}"; done; done; } | sort)"
 launch="$(echo "$test" | "$@")"
 
@@ -29,8 +37,5 @@ then
 	exit
 fi
 }
-launchexcept "heroic" "heroic --ozone-platform-hint=auto $arg2"
-launchexcept "signal-desktop" "signal-desktop --ozone-platform-hint=auto $arg2"
-launchexcept "ripcord" "env QT_QPA_PLATFORM_PLUGIN_PATH=/usr/lib/qt/plugins ripcord $arg2"
-launchexcept "steam" "env SDL_VIDEODRIVER=x11 steam $arg2"
+postchoice
 nohup "$launch" > /dev/null 2>&1&
