@@ -13,6 +13,10 @@ then
 ROOTTOOL="sudo"
 fi
 
+cargoupdate(){
+	cargo install $(cargo install --list | grep -E '^[a-z0-9_-]+ v[0-9.]+:$' | cut -f1 -d' ')
+	#cargo install $(notify-send "cargo install run")
+}
 pacmanupdate(){
 $ROOTTOOL pacman -Sy archlinux-keyring --needed --noconfirm
 $ROOTTOOL pacman -Su
@@ -33,3 +37,4 @@ checkupdate "pacman" "pacmanupdate" "Starting pacman upgrade"
 checkupdate "dnf" "$ROOTTOOL dnf upgrade" "Starting dnf upgrade"
 checkupdate "aur" "aur sync -u" "Syncthing aur..."
 checkupdate "flatpak" "flatpak update" "updating flatpaks..."
+checkupdate "cargo" "cargoupdate" "updating crates..."
