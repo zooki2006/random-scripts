@@ -33,6 +33,8 @@ then
 	$2
 fi
 }
+#checkupdate "yay" "yay" "Starting yay upgrade"
+#checkupdate "paru" "paru" "Starting paru upgrade"
 checkupdate "pacman" "pacmanupdate" "Starting pacman upgrade"
 checkupdate "dnf" "$ROOTTOOL dnf upgrade" "Starting dnf upgrade"
 checkupdate "aur" "aur sync -u" "Syncthing aur..."
