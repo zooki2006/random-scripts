@@ -29,7 +29,7 @@ then
 	exit
 fi
 }
-launchexcept "herotic" "heroic --ozone-platform-hint=auto $arg2"
+launchexcept "heroic" "heroic --ozone-platform-hint=auto $arg2"
 launchexcept "signal-desktop" "signal-desktop --ozone-platform-hint=auto $arg2"
 launchexcept "ripcord" "env QT_QPA_PLATFORM_PLUGIN_PATH=/usr/lib/qt/plugins ripcord $arg2"
 launchexcept "steam" "env SDL_VIDEODRIVER=x11 steam $arg2"
