@@ -53,4 +53,4 @@ then
 fi
 }
 postchoice
-nohup "$launch" > /dev/null 2>&1&
+nohup $launch > /dev/null 2>&1&
