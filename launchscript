@@ -17,11 +17,11 @@ launchexcept "heroic" "heroic --ozone-platform-hint=auto $arg2"
 launchexcept "signal-desktop" "signal-desktop --ozone-platform-hint=auto $arg2"
 launchexcept "ripcord" "env QT_QPA_PLATFORM_PLUGIN_PATH=/usr/lib/qt/plugins ripcord $arg2"
 launchexcept "steam" "env SDL_VIDEODRIVER=x11 steam $arg2"
-launchexcept "discord" "$BROWSER www.discord.com/app"
-launchexcept "skype" "$BROWSER web.skype.com"
+launchexcept "discord" "$BROWSER www.discord.com/app" "1"
+launchexcept "skype" "$BROWSER web.skype.com" "1"
 }
 launchexcept(){
-if ! command -v "$1" > /dev/null 2>&1
+if [ "$3" = "1" ] && ! command -v "$1" > /dev/null 2>&1
 then
 	addoptions "$1"
 fi
