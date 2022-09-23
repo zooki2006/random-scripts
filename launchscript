@@ -47,12 +47,17 @@ echo "launch=$launch"
 echo "arg1=$arg1"
 echo "arg2=$arg2"
 
+launchsyntax(){
+nohup $1 > /dev/null 2>&1&
+}
+
 launchexcept(){
 if [ "$arg1" = "$1" ]
 then
-	nohup $2 > /dev/null 2>&1&
+	launchsyntax $2
 	exit
 fi
 }
 loadconfig
-nohup $launch > /dev/null 2>&1&
+launchsyntax $launch 
+exit
