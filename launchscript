@@ -4,6 +4,14 @@ scriptname="launch script"
 scriptdisc='script to launch programs in $PATH with extras'
 . zconf
 
+
+addoptions(){
+EXTRAOPTIONS="$EXTRAOPTIONS\n$1"
+}
+prechoice(){
+addoptions "skype"
+addoptions "discord"
+}
 postchoice(){
 launchexcept "heroic" "heroic --ozone-platform-hint=auto $arg2"
 launchexcept "signal-desktop" "signal-desktop --ozone-platform-hint=auto $arg2"
@@ -12,8 +20,10 @@ launchexcept "steam" "env SDL_VIDEODRIVER=x11 steam $arg2"
 launchexcept "discord" "firefox www.discord.com/app"
 launchexcept "skype" "firefox web.skype.com"
 }
-test="$({ set -f; IFS=:; for d in $PATH; do set +f; [ -n "$d" ] || d=.; for f in "$d"/.[!.]* "$d"/..?* "$d"/*; do [ -f "$f" ] && [ -x "$f" ] && printf '%s\n' "${f##*/}"; done; done; } | sort)"
-launch="$(echo "$test" | "$@")"
+
+prechoice
+test="$({ set -f; IFS=:; for d in $PATH; do set +f; [ -n "$d" ] || d=.; for f in "$d"/.[!.]* "$d"/..?* "$d"/*; do [ -f "$f" ] && [ -x "$f" ] && printf '%s\n' "${f##*/}"; done; done; })"
+launch="$(printf "$test\n$EXTRAOPTIONS" | sort | "$@")"
 
 set -- $launch
 arg1=($launch)
