@@ -16,8 +16,8 @@ TABLE=""
 for STEAM in $STEAMDIRS; do
 STEAMAPPS="$STEAM/steamapps"
 for file in $(ls $STEAMAPPS/*.acf -1v); do
-    ID=$(cat "$file" | grep '"appid"' | head -1 | sed -r 's/[^"]*"appid"[^"]*"([^"]*)"/\1/')
-    NAME=$(cat "$file" | grep '"name"' | head -1 | sed -r 's/[^"]*"name"[^"]*"([^"]*)"/\1/')
+    ID=$(cat "$file" | grep '"appid"' | head -1 | sed -r 's/[^"]*"appid"[^"]*"([^"]*)"/\1/' | tr '[:upper:]' '[:lower:]')
+    NAME=$(cat "$file" | grep '"name"' | head -1 | sed -r 's/[^"]*"name"[^"]*"([^"]*)"/\1/' | tr '[:upper:]' '[:lower:]')
     TABLE="$TABLE \n$NAME \n$ID"
 done
 done
