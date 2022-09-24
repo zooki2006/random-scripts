@@ -1,0 +1,14 @@
+#!/bin/sh
+arg1="$1"
+arg2="$2"
+
+if ! pgrep -x "$arg1" > /dev/null 2>&1
+then
+	echo "not running"
+	$arg2
+else
+	echo "running"
+	killall "$arg1"
+fi
+
+
