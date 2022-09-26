@@ -5,8 +5,8 @@ then
 else
 	MENU="$1"
 fi
-#file_data="$(<"file")"
 steamvdfdir="$HOME/.local/share/Steam/steamapps/libraryfolders.vdf"
+
 
 steamvdfget(){
 file="$1"
@@ -24,11 +24,9 @@ done < "$file"
 STEAMDIRS="$(steamvdfget $steamvdfdir )"
 TABLE=""
 for STEAM in $STEAMDIRS; do
-echo "loop STEAMDIR"
 STEAMAPPS="$STEAM/steamapps"
 for file in "$STEAMAPPS"/*.acf
 do
-#echo "$file"
 while IFS= read -r line || [ -n "$line" ]
 do
     set -- $line
@@ -37,7 +35,6 @@ do
 	shift
 	var="$*"
     	var=${var:1:-1}
-        printf '%s\n' "$var"
 	NAME="$var"
 
     fi
@@ -47,23 +44,15 @@ do
 	shift
 	var="$*"
     	var=${var:1:-1}
-        printf '%s\n' "$var"
     ID="$var"
     fi
 done < "$file"
 TABLE="$TABLE \n$NAME \n$ID"
-	#filecon=$(cat "$file")
-    #ID=$(echo "$filecon" | grep '"appid"' | head -1 | sed -r 's/[^"]*"appid"[^"]*"([^"]*)"/\1/' )
-    #NAME=$(echo "$filecon" | grep '"name"' | head -1 | sed -r 's/[^"]*"name"[^"]*"([^"]*)"/\1/' )
-    #TABLE="$TABLE \n$NAME \n$ID"
 done
 done
 
-#TABLE="$(echo "$TABLE" | tr '[:upper:]' '[:lower:]')"
-
+TABLE="$(echo "$TABLE" | tr '[:upper:]' '[:lower:]')"
 steamname="$(printf "$TABLE" | sed '1~2d' | sort | $MENU)"
-#steamname="$(printf "$TABLE" | sed '1~2d' | fzf)"
-
 
 if [ -n "$steamname" ]
 then
