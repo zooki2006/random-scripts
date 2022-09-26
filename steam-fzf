@@ -7,7 +7,6 @@ else
 fi
 #file_data="$(<"file")"
 steamvdfdir="$HOME/.local/share/Steam/steamapps/libraryfolders.vdf"
-steamvdf="$(cat $steamvdfdir)"
 
 steamvdfget(){
 file="$1"
@@ -36,7 +35,7 @@ do
     if [ "$1" = '"name"' ]
     then
 	shift
-	var="$@"
+	var="$*"
     	var=${var:1:-1}
         printf '%s\n' "$var"
 	NAME="$var"
@@ -46,7 +45,7 @@ do
     if [ "$1" = '"appid"' ]
     then
 	shift
-	var="$@"
+	var="$*"
     	var=${var:1:-1}
         printf '%s\n' "$var"
     ID="$var"
