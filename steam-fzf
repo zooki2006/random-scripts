@@ -14,8 +14,6 @@ file="$1"
 while IFS= read -r line || [ -n "$line" ]
 do
     set -- $line
-    #printf '%s\n' "$1"
-    #printf '%s\n' "$2"
     if [ "$1" = '"path"' ]
     then
     var=${2:1:-1}
@@ -23,6 +21,7 @@ do
     fi
 done < "$file"
 }
+
 STEAMDIRS="$(steamvdfget $steamvdfdir )"
 TABLE=""
 for STEAM in $STEAMDIRS; do
@@ -30,14 +29,38 @@ echo "loop STEAMDIR"
 STEAMAPPS="$STEAM/steamapps"
 for file in "$STEAMAPPS"/*.acf
 do
-	filecon=$(cat "$file")
-    ID=$(echo "$filecon" | grep '"appid"' | head -1 | sed -r 's/[^"]*"appid"[^"]*"([^"]*)"/\1/' )
-    NAME=$(echo "$filecon" | grep '"name"' | head -1 | sed -r 's/[^"]*"name"[^"]*"([^"]*)"/\1/' )
-    TABLE="$TABLE \n$NAME \n$ID"
+#echo "$file"
+while IFS= read -r line || [ -n "$line" ]
+do
+    set -- $line
+    if [ "$1" = '"name"' ]
+    then
+	shift
+	var="$@"
+    	var=${var:1:-1}
+        printf '%s\n' "$var"
+	NAME="$var"
+
+    fi
+    set -- $line
+    if [ "$1" = '"appid"' ]
+    then
+	shift
+	var="$@"
+    	var=${var:1:-1}
+        printf '%s\n' "$var"
+    ID="$var"
+    fi
+done < "$file"
+TABLE="$TABLE \n$NAME \n$ID"
+	#filecon=$(cat "$file")
+    #ID=$(echo "$filecon" | grep '"appid"' | head -1 | sed -r 's/[^"]*"appid"[^"]*"([^"]*)"/\1/' )
+    #NAME=$(echo "$filecon" | grep '"name"' | head -1 | sed -r 's/[^"]*"name"[^"]*"([^"]*)"/\1/' )
+    #TABLE="$TABLE \n$NAME \n$ID"
 done
 done
 
-TABLE="$(echo "$TABLE" | tr '[:upper:]' '[:lower:]')"
+#TABLE="$(echo "$TABLE" | tr '[:upper:]' '[:lower:]')"
 
 steamname="$(printf "$TABLE" | sed '1~2d' | sort | $MENU)"
 #steamname="$(printf "$TABLE" | sed '1~2d' | fzf)"
