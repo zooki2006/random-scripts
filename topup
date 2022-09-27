@@ -22,6 +22,12 @@ $ROOTTOOL pacman -Sy archlinux-keyring --needed --noconfirm
 $ROOTTOOL pacman -Su
 }
 
+aptupdate(){
+$ROOTTOOL apt update
+$ROOTTOOL apt uprade
+}
+
+
 checkupdate(){
 if command -v "$1" > /dev/null 2>&1
 then
@@ -36,7 +42,9 @@ fi
 #checkupdate "yay" "yay" "Starting yay upgrade"
 #checkupdate "paru" "paru" "Starting paru upgrade"
 checkupdate "pacman" "pacmanupdate" "Starting pacman upgrade"
+checkupdate "apt" "aptupdate" "Starting apt upgrade"
 checkupdate "dnf" "$ROOTTOOL dnf upgrade" "Starting dnf upgrade"
 checkupdate "aur" "aur sync -u" "Syncthing aur..."
 checkupdate "flatpak" "flatpak update" "updating flatpaks..."
+#checkupdate "snap" "sudo snap refresh" "updating snaps..."
 checkupdate "cargo" "cargoupdate" "updating crates..."
