@@ -6,7 +6,12 @@ scriptdisc='script to launch programs in $PATH with extras'
 
 
 addoptions(){
+if [ -z "$EXTRAOPTIONS" ]
+then
+	EXTRAOPTIONS="$1"
+else
 EXTRAOPTIONS="$EXTRAOPTIONS\n$1"
+fi
 }
 if [ -z "$BROWSER" ]
 then
