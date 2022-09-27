@@ -5,6 +5,7 @@ then
 else
 	MENU="$1"
 fi
+lowercase="$2"
 steamvdfdir="$HOME/.local/share/Steam/steamapps/libraryfolders.vdf"
 
 
@@ -50,8 +51,10 @@ done < "$file"
 TABLE="$TABLE \n$NAME \n$ID"
 done
 done
-
+if [ -n "$lowercase" ]
+then
 TABLE="$(echo "$TABLE" | tr '[:upper:]' '[:lower:]')"
+fi
 steamname="$(printf "$TABLE" | sed '1~2d' | sort | $MENU)"
 
 if [ -n "$steamname" ]
