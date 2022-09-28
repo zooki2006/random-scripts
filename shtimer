@@ -1,0 +1,28 @@
+#!/bin/sh
+# Loop from var-var.
+start=0
+if [ -z "$1" ]
+then
+	printf "no time set"
+	exit
+fi
+end=$1
+sec=-1
+while [ "$start" -le "$end" ]; do
+    #printf '%s\n' "$start"
+    start=$((start+1))
+    sec=$(($sec+1))
+    if [ "$sec" = 60 ]
+    then
+	    sec=0
+	    min=$(($min+1))
+    fi
+    if [ -z "$min" ]
+    then
+    printf '%s\n' "$sec sec"
+    else
+    printf '%s\n' "$min min $sec sec"
+    fi
+    #printf '%s\n' "$start"
+    sleep 1
+done
