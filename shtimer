@@ -8,21 +8,46 @@ then
 fi
 end=$1
 sec=-1
+startmax=$start
+secman=$sec
+while [ "$startmax" -le "$end" ]; do
+    startmax=$((startmax+1))
+    secmax=$(($secmax+1))
+    if [ "$secmax" = 60 ]
+    then
+	    secmax=0
+	    minmax=$(($minmax+1))
+    fi
+    printf "loop"
+done
+if [ "$secmax" = 0 ]
+then
+    endprint="$minmax min"
+elif [ -z "$minmax" ]
+then
+	endprint="$secmax sec"
+else
+	endprint="$minmax min $secmax sec"
+fi
+
+
+
 while [ "$start" -le "$end" ]; do
-    #printf '%s\n' "$start"
     start=$((start+1))
     sec=$(($sec+1))
+    clear
     if [ "$sec" = 60 ]
     then
 	    sec=0
 	    min=$(($min+1))
-    fi
-    if [ -z "$min" ]
+    startprint="$min min"
+    elif [ -z "$min" ]
     then
-    printf '%s\n' "$sec sec"
+    startprint="$sec sec"
     else
-    printf '%s\n' "$min min $sec sec"
+    startprint="$min min $sec sec"
     fi
-    #printf '%s\n' "$start"
+    printf '%s\n' "$startprint / $endprint"
     sleep 1
 done
+aplay "$HOME/Music/ringtone/All Might - a phone call is here.wav"
