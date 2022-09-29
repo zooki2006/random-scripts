@@ -2,7 +2,7 @@
 syntax="espeak -s 125"
 if ! [ -z "$(pgrep "espeak")" ]
 then
-pkill "espeak"
+killall "espeak"
 fi
 if [ "$WAYLAND_DISPLAY" ]
 then
