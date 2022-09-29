@@ -8,6 +8,7 @@ then
 fi
 end=$1
 sec=-1
+secmax=$sec
 startmax=$start
 secman=$sec
 while [ "$startmax" -le "$end" ]; do
