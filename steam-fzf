@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
+scriptname="steam fzf ui"
+scriptdisc='script to launch steam games'
+. zconf
+
 if [ -z "$1" ]
 then
 	MENU="fzf"
@@ -61,7 +65,7 @@ if [ -n "$steamname" ]
 then
 
 steamid="$(printf "$TABLE" | grep -wA1 "$steamname" | grep -vw "$steamname")"
-export SDL_VIDEODRIVER=''
+export SDL_VIDEODRIVER="$STEAM_SDL_VIDEODRIVER"
 steam -no-browser steam://rungameid/$steamid
 #steam "steam://rungameid/$steamid"
 fi

@@ -1,5 +1,13 @@
 #!/bin/sh
 
+
+
+# config
+STEAM_SDL_VIDEODRIVER="X11"
+
+
+
+
 if [ -z "$WAYLAND_DISPLAY" ]
 then
 	dmenu="dmenu"
@@ -11,7 +19,7 @@ fi
 arg="$1"
 
 
-
+# add --help to all scripts
 if [ "$arg" = "--help" ] || [ "$arg" = "-h" ] 
 then
 	echo "-- help --"

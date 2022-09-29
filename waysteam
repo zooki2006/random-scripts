@@ -5,7 +5,7 @@ scriptdisc="script for testing starting steam in Xwayland window"
 
 
 #vars
-export SDL_VIDEODRIVER=''
+export SDL_VIDEODRIVER="$STEAM_SDL_VIDEODRIVER"
 Xwayland=0
 
 if [ "$Xwayland" = 1 ]

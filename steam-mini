@@ -1,3 +1,8 @@
 #!/bin/sh
-export SDL_VIDEODRIVER=""
+scriptname="steam mini ui"
+scriptdisc='script to launch steam with no browser mini ui'
+. zconf
+
+
+export SDL_VIDEODRIVER="$STEAM_SDL_VIDEODRIVER"
 steam -no-browser +open steam://open/minigameslist
