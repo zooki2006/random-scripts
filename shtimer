@@ -51,4 +51,4 @@ while [ "$start" -le "$end" ]; do
     printf '%s\n' "$startprint / $endprint"
     sleep 1
 done
-aplay "$HOME/Music/ringtone/All Might - a phone call is here.wav"
+mpv --no-video "$HOME/Music/ringtone/All Might - a phone call is here.wav"
