@@ -27,6 +27,7 @@ launchexcept "steam" "env SDL_VIDEODRIVER='$STEAM_SDL_VIDEODRIVER' steam $arg2"
 launchexcept "skype" "chromium web.skype.com" "1"
 launchexcept "bitpaper" "$BROWSER https://bitpaper.io/go/zuki1/AFgaDpJzQ" "1"
 launchexcept "virtual-piano" "$BROWSER https://www.onlinepianist.com/virtual-piano" "1"
+launchexcept "panel-attack" "love $HOME/src/panel-attack" "1"
 }
 launchexcept(){
 if [ "$3" = "1" ] && ! command -v "$1" > /dev/null 2>&1
