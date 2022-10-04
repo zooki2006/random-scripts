@@ -41,14 +41,14 @@ cmd=$1
 if [ "$cmd" = "add" ] || [ "$cmd" = "remove" ]
 then
 
-	if [ $3 = "-n" ]
+	if [ "$3" = "-n" ]
 	then
 		tabbedname="$4"
 	else
 		tabbedname="awesometabbed"
 	fi
 else
-	if [ $2 = "-n" ] 
+	if [ "$2" = "-n" ] 
 	then
 		tabbedname="$3"
 	else
