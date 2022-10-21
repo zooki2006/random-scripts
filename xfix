@@ -1,0 +1,2 @@
+#!/bin/sh
+xprop -f WM_STATE 32c -set WM_STATE 1
