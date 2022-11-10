@@ -3,7 +3,7 @@
 
 
 # config
-STEAM_SDL_VIDEODRIVER="X11"
+STEAM_SDL_VIDEODRIVER=""
 
 
 
