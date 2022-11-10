@@ -1,0 +1,8 @@
+#!/bin/sh
+while read type ; read WSHELL ; do 
+if [ "$type" == '"focus"' ] && [ "$WSHELL" == '"xwayland"' ]; then
+xwin="$(xprop -root _NET_ACTIVE_WINDOW | grep -o "[^ ]*$")"
+xprop -id "$xwin" -f WM_STATE 32c -set WM_STATE 1
+echo "xfix $xwin"
+fi
+done < <(swaymsg -mt subscribe '["window"]' | jq --unbuffered .change,.container.shell)
