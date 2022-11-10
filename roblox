@@ -1,0 +1,2 @@
+#!/bin/sh
+chromium  --app="https://www.roblox.com"
