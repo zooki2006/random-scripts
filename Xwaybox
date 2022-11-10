@@ -1,0 +1,18 @@
+#!/bin/sh
+scriptname="Xwaybox"
+scriptdisc="script for starting games in stadalone Xwayland window"
+. zconf
+
+#vars
+export SDL_VIDEODRIVER="X11"
+export DISPLAY=":12"
+Xwayland -retro -noreset -fakescreenfps 165 :12 &
+Xwayland_pid=$!
+sleep 2
+$HOME/src/dwmsteam/dwm/dwm &
+dwm_pid=$!
+xrandr --output "XWAYLAND1" --primary
+$@
+#steam
+kill -kill $Xwayland_pid
+kill $dwm_pid
