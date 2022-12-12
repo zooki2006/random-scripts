@@ -32,24 +32,24 @@ fi
 case $option in
 
  disconnect)
-    $mullvadcli disconnect
+    $mullvadcli disconnect && mullvadloop
     ;;
 
   reconnect)
-    $mullvadcli reconnect
+    $mullvadcli reconnect && mullvadloop
     ;;
  connect)
-    $mullvadcli connect
+    $mullvadcli connect && mullvadloop
     ;;
  "set locale")
         mullvadrelaylistcodes="$($mullvadcli relay list | awk '!/^\t\t.*$/' | awk '/./' | sed 's/ @.*//g' | sed 's/^\t/ ∙ /g' | awk '{print (substr($0,length($0)-3,3))}' | sed 's/(//g' )"
-	$mullvadcli relay set location "$(echo "$mullvadrelaylistcodes" | $menu)"
+	$mullvadcli relay set location "$(echo "$mullvadrelaylistcodes" | $menu)" && mullvadloop
 	;;
  login)
 	$mullvadcli account login "$(echo "" | $menu -p "enter login number" )" && mullvadloop 
     ;;
  logout)
-	 $mullvadcli account logout
+	 $mullvadcli account logout && mullvadloop
 	 ;;
  exit)
 	 exit
