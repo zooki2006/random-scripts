@@ -4,7 +4,10 @@ scriptdisc="script for starting games in stadalone Xwayland window"
 . zconf
 
 #vars
-export SDL_VIDEODRIVER="X11"
+export CLUTTER_BACKEND=X11
+export GDK_BACKEND=x11
+export SDL_VIDEODRIVER=X11
+export QT_QPA_PLATFORM=xcb
 export DISPLAY=":12"
 Xwayland -retro -noreset -fakescreenfps 165 :12 &
 Xwayland_pid=$!
