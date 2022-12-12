@@ -1,0 +1,11 @@
+#!/bin/sh
+
+mon="$1"
+monargs="--auto --right-of DP-0"
+if xrandr | grep "mm x " | grep "$mon connected"
+then
+xrandr --output "$mon" --off
+else
+xrandr --output "$mon" $monargs
+fi
+xsetroot -cursor_name left_ptr
