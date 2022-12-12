@@ -22,6 +22,7 @@ loadconfig(){
 launchexcept "heroic" "heroic --ozone-platform-hint=auto $arg2"
 launchexcept "signal-desktop" "signal-desktop --ozone-platform-hint=auto $arg2"
 launchexcept "ripcord" "env QT_QPA_PLATFORM_PLUGIN_PATH=/usr/lib/qt/plugins ripcord $arg2"
+launchexcept "dolphin-emu" "env QT_QPA_PLATFORM=xcb dolphin-emu $arg2"
 
 
 if [ -z "$STEAM_SDL_VIDEODRIVER" ]
