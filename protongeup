@@ -3,7 +3,7 @@ latesturi="https://api.github.com/repos/GloriousEggroll/proton-ge-custom/release
 steam="$HOME/.steam/root/compatibilitytools.d"
 proton="$(curl -s $latesturi | grep "browser_download_url.*Proton.*tar.gz" | cut -d \" -f4)"
 protonlist="$(find "$steam" -name "GE-Proton*" -type d -print)"
-protonver="$(echo "$proton" | cut -f8 -d\/)"
+protonver="$(echo "$proton" | cut -f8 -d/)"
 installed="$(find "$steam" -name "GE-Proton*" -type d -print | cut -f7 -d/)"
 if [ "$(echo "$installed" | grep "$protonver")" ]
 then
@@ -24,7 +24,7 @@ echo "Waiting for 3 seconds before proceeding with update ..."
 sleep 3
 
 # Create and switch to temporary directory
-cd "$(mktemp -d)" 
+cd "$(mktemp -d)" || exit
 
 # Delete currently installed proton-ge
 if [ "$protondelete" = "1" ]
