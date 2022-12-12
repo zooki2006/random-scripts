@@ -7,7 +7,7 @@ scriptdisc="script to update all things"
 
 #UPDATETHEME="$(tput setaf 4):: $(tput sgr0)"
 UPDATETHEME="$(tput setaf 2)==> $(tput sgr0)"
-
+trap '' exit
 if [ -z "$ROOTTOOL" ]
 then
 ROOTTOOL="sudo"
@@ -48,3 +48,4 @@ checkupdate "aur" "aur sync -u" "Syncthing aur..."
 checkupdate "flatpak" "flatpak update" "updating flatpaks..."
 #checkupdate "snap" "sudo snap refresh" "updating snaps..."
 checkupdate "cargo" "cargoupdate" "updating crates..."
+checkupdate "steam" "protongeup" "updating proton ge..."
