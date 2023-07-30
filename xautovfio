@@ -1,0 +1,7 @@
+#!/bin/sh
+if [ "$(lspci -nnk -d 10de:2486 | grep "vfio-pci")" ]
+then
+	rm /etc/X11/xorg.conf.d/20-nvidia.conf
+else
+	cp /etc/X11/xorg.conf.disabled/20-nvidia.conf /etc/X11/xorg.conf.d/20-nvidia.conf
+fi
