@@ -24,20 +24,35 @@ launchexcept "signal-desktop" "signal-desktop --ozone-platform-hint=auto $arg2"
 launchexcept "ripcord" "env QT_QPA_PLATFORM_PLUGIN_PATH=/usr/lib/qt/plugins ripcord $arg2"
 launchexcept "dolphin-emu" "env QT_QPA_PLATFORM=xcb dolphin-emu $arg2"
 
+launchexcept "pokerandozx" "$HOME/Documents/PokeRandoZX-v4_6_0/launcher_UNIX.sh $arg2" "1"
+launchexcept "toontowncc" "$HOME/Games/ToonTownCC/toontown $arg2" "1"
+if ls /opt/resolve/bin/resolve;then
+launchexcept "davinciresolve" "LD_PRELOAD=/usr/lib64/libglib-2.0.so /opt/resolve/bin/resolve $arg2" "1"
+fi
+#if command -v "mullvad-exclude" > /dev/null 2>&1
+#then
+#launchexcept "steam" "mullvad-exclude env SDL_VIDEODRIVER='X11'  steam $arg2"
+##launchexcept "steam" "steam $arg2"
+##launchexcept "steam" "mullvad-exclude steam $arg2"
+#else
+#launchexcept "steam" "env SDL_VIDEODRIVER='X11' steam $arg2"
+##launchexcept "steam" "steam $arg2"
+##launchexcept "steam" "steam $arg2"
+#fi
 
-if [ -z "$STEAM_SDL_VIDEODRIVER" ]
-then
-	STEAM_SDL_VIDEODRIVER="X11"
-fi
-if command -v "mullvad-exclude" > /dev/null 2>&1
-then
-launchexcept "steam" "mullvad-exclude env SDL_VIDEODRIVER='$STEAM_SDL_VIDEODRIVER' steam $arg2"
-else
-launchexcept "steam" "env SDL_VIDEODRIVER='$STEAM_SDL_VIDEODRIVER' steam $arg2"
-fi
+#if ls /etc/X11/xorg.conf.d/80-egpu-primary-igpu-offload.conf
+#then
+#launchexcept "steam" "env SDL_VIDEODRIVER='X11' steam $arg2"
+launchexcept "steam" "env SDL_VIDEODRIVER='x11' steam $arg2"
+#launchexcept "steam" "steam $arg2"
+#else
+#launchexcept "steam" "env SDL_VIDEODRIVER='X11' steam $arg2"
+#fi
+
 #launchexcept "discord" "$BROWSER www.discord.com/app" "1"
-launchexcept "skype" "chromium web.skype.com" "1"
 launchexcept "bitpaper" "$BROWSER https://bitpaper.io/go/zuki1/AFgaDpJzQ" "1"
+launchexcept "english" "$BROWSER https://docs.google.com/document/d/12TsgFdVNn6Wvqvm5q_opAERctOdQe7weY7dQyzWx6Qs/edit" "1"
+launchexcept "english2" "$BROWSER https://qualifications.pearson.com/content/dam/pdf/International%20GCSE/English%20Language%20B/2016/exam-materials/4EB1_01_que_20180606.pdf" "1"
 launchexcept "virtual-piano" "$BROWSER https://www.onlinepianist.com/virtual-piano" "1"
 launchexcept "panel-attack" "love $HOME/src/panel-attack" "1"
 }
