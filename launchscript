@@ -66,7 +66,15 @@ fi
 
 loadconfig
 test="$({ set -f; IFS=:; for d in $PATH; do set +f; [ -n "$d" ] || d=.; for f in "$d"/.[!.]* "$d"/..?* "$d"/*; do [ -f "$f" ] && [ -x "$f" ] && printf '%s\n' "${f##*/}"; done; done; })"
-launch="$(printf "$test\n$EXTRAOPTIONS" | sort | "$@")"
+
+if [ -z "$1" ] 
+then
+	USERMENU="bemenu"
+else
+	USERMENU="$@"
+fi
+
+launch="$(printf "$test\n$EXTRAOPTIONS" | sort | "$USERMENU")"
 
 set -- $launch
 arg1=($launch)
@@ -79,12 +87,15 @@ arg2="${x#* }"
 #arg2="arg2 not set"
 fi
 
-echo "launch=$launch"
-echo "arg1=$arg1"
-echo "arg2=$arg2"
+#echo "launch=$launch"
+#echo "arg1=$arg1"
+#echo "arg2=$arg2"
 
 launchsyntax(){
-nohup $1 > /dev/null 2>&1&
+#nohup $1 > /dev/null 2>&1&
+#nohup $1 > /dev/null 2>&1&
+#"$1"
+$1 & disown
 }
 
 launchexcept(){
