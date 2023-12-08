@@ -27,27 +27,10 @@ launchexcept "dolphin-emu" "env QT_QPA_PLATFORM=xcb dolphin-emu $arg2"
 launchexcept "pokerandozx" "$HOME/Documents/PokeRandoZX-v4_6_0/launcher_UNIX.sh $arg2" "1"
 launchexcept "toontowncc" "$HOME/Games/ToonTownCC/toontown $arg2" "1"
 if ls /opt/resolve/bin/resolve;then
-launchexcept "davinciresolve" "LD_PRELOAD=/usr/lib64/libglib-2.0.so /opt/resolve/bin/resolve $arg2" "1"
+launchexcept "davinciresolve" "LD_PRELOAD=/usr/lib64/libglib-2.0.so /opt/resolve/bin/resolve" "1" "1"
 fi
-#if command -v "mullvad-exclude" > /dev/null 2>&1
-#then
-#launchexcept "steam" "mullvad-exclude env SDL_VIDEODRIVER='X11'  steam $arg2"
-##launchexcept "steam" "steam $arg2"
-##launchexcept "steam" "mullvad-exclude steam $arg2"
-#else
-#launchexcept "steam" "env SDL_VIDEODRIVER='X11' steam $arg2"
-##launchexcept "steam" "steam $arg2"
-##launchexcept "steam" "steam $arg2"
-#fi
 
-#if ls /etc/X11/xorg.conf.d/80-egpu-primary-igpu-offload.conf
-#then
-#launchexcept "steam" "env SDL_VIDEODRIVER='X11' steam $arg2"
-launchexcept "steam" "env SDL_VIDEODRIVER='x11' steam $arg2"
-#launchexcept "steam" "steam $arg2"
-#else
-#launchexcept "steam" "env SDL_VIDEODRIVER='X11' steam $arg2"
-#fi
+launchexcept "steam" "vpnbypass env SDL_VIDEODRIVER='x11' steam $arg2"
 
 #launchexcept "discord" "$BROWSER www.discord.com/app" "1"
 launchexcept "bitpaper" "$BROWSER https://bitpaper.io/go/zuki1/AFgaDpJzQ" "1"

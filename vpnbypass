@@ -1,0 +1,36 @@
+#!/bin/sh
+
+usercommand="$@"
+
+#check if mullvad is installed
+if command -v "mullvad-exclude" 
+then # if mullvad installed run this
+ 
+set -- $(mullvad status) # take in mullvad status as input
+mullvadstatus="$1" # set the first word in input as mullvad status var
+if [ "$mullvadstatus" == "Connected" ] # check mullvad status var if connected
+then # if so run this
+echo "mullvad installed and connected, enabling passthrough"
+mullvadvpn="1"
+
+elif [ "$mullvadstatus" == "Disconnected" ] # check mullvad status var for if disconnected
+then # if so run this
+echo "mullvad installed and disconnected"
+
+
+else
+echo "error mullvad status not disconnected or connected"
+fi
+
+else
+mullvadvpn="0"
+echo "not using mullvad"
+fi
+if [ "$mullvadvpn" == "1" ]
+then
+	echo "mullvad-exclude $usercommand"
+	mullvad-exclude $usercommand
+else
+	echo "$usercommand"
+	$usercommand
+fi
