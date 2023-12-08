@@ -26,9 +26,6 @@ launchexcept "dolphin-emu" "env QT_QPA_PLATFORM=xcb dolphin-emu $arg2"
 
 launchexcept "pokerandozx" "$HOME/Documents/PokeRandoZX-v4_6_0/launcher_UNIX.sh $arg2" "1"
 launchexcept "toontowncc" "$HOME/Games/ToonTownCC/toontown $arg2" "1"
-if ls /opt/resolve/bin/resolve;then
-launchexcept "davinciresolve" "LD_PRELOAD=/usr/lib64/libglib-2.0.so /opt/resolve/bin/resolve" "1" "1"
-fi
 
 launchexcept "steam" "vpnbypass env SDL_VIDEODRIVER='x11' steam $arg2"
 
