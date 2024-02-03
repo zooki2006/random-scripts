@@ -9,9 +9,9 @@ set -- $(ps -p "$pid" -o stat)
 echo "$2"
 if [ "$2" = "Tl" ] || [ "$2" = "T<l" ] || [ "$2" = "T" ]
 then
-	#notify-send 'kill -CONT "$pid"'
+	notify-send "kill -CONT $pid"
 	kill -CONT "$pid"
 else
-	#notify-send 'kill -STOP "$pid"'
+	notify-send "kill -STOP $pid"
 	kill -STOP "$pid"
 fi
