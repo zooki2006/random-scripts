@@ -31,7 +31,7 @@ launchexcept "steam" "vpnbypass env SDL_VIDEODRIVER='x11' steam $arg2"
 
 launchexcept "r2modman" "r2modman --no-sandbox"
 #launchexcept "discord" "$BROWSER www.discord.com/app" "1"
-launchexcept "bitpaper" "$BROWSER https://bitpaper.io/go/zuki1/AFgaDpJzQ" "1"
+launchexcept "bitpaper" "$BROWSER --new-window https://bitpaper.io/go/zuki1/AFgaDpJzQ" "1"
 launchexcept "english" "$BROWSER https://docs.google.com/document/d/12TsgFdVNn6Wvqvm5q_opAERctOdQe7weY7dQyzWx6Qs/edit" "1"
 launchexcept "english2" "$BROWSER https://qualifications.pearson.com/content/dam/pdf/International%20GCSE/English%20Language%20B/2016/exam-materials/4EB1_01_que_20180606.pdf" "1"
 launchexcept "virtual-piano" "$BROWSER https://www.onlinepianist.com/virtual-piano" "1"
