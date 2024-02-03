@@ -66,6 +66,9 @@ then
 
 steamid="$(printf "$TABLE" | grep -wA1 "$steamname" | grep -vw "$steamname")"
 export SDL_VIDEODRIVER="$STEAM_SDL_VIDEODRIVER"
+swhdir="$HOME/.local/share/Steam/ubuntu12_64/steamwebhelper"
+chmod -x "$swhdir" 
 steam -no-browser steam://rungameid/$steamid
+chmod +x "$swhdir"
 #steam "steam://rungameid/$steamid"
 fi
