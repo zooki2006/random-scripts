@@ -29,6 +29,7 @@ launchexcept "toontowncc" "$HOME/Games/ToonTownCC/toontown $arg2" "1"
 
 launchexcept "steam" "vpnbypass env SDL_VIDEODRIVER='x11' steam $arg2"
 
+launchexcept "r2modman" "r2modman --no-sandbox"
 #launchexcept "discord" "$BROWSER www.discord.com/app" "1"
 launchexcept "bitpaper" "$BROWSER https://bitpaper.io/go/zuki1/AFgaDpJzQ" "1"
 launchexcept "english" "$BROWSER https://docs.google.com/document/d/12TsgFdVNn6Wvqvm5q_opAERctOdQe7weY7dQyzWx6Qs/edit" "1"
