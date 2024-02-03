@@ -1,0 +1,2 @@
+#!/bin/sh
+curl "$1" -H 'Referer: https://soundbooththeater.com/' -o "$2"
