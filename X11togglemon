@@ -1,7 +1,13 @@
 #!/bin/sh
 
 mon="$1"
-monargs="--auto --right-of DP-0"
+if [ "$2" ]
+then
+pos="$2"
+else
+pos="--right-of DP-0"
+fi
+monargs="--auto $pos"
 if xrandr | grep "mm x " | grep "$mon connected"
 then
 xrandr --output "$mon" --off
