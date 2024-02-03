@@ -4,9 +4,11 @@ scriptdisc="script for applying bluelight using sct on xorg"
 source zconf
 
 bluelight=3500
+bluelight=3000
+bluelight=2500
 
 
-SCTSTATE_PATH=~/.cache/bluelighter-state
+SCTSTATE_PATH=/tmp/bluelighter-state
 
 sctstate=$([ -f "$SCTSTATE_PATH" ] && cat "$SCTSTATE_PATH" || echo 0)
 
