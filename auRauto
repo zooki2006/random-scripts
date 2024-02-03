@@ -1,0 +1,8 @@
+#!/bin/sh
+reponame="custom"
+list="$(pacman -Sl $reponame | grep -v "installed")"
+for val in $list; do
+
+ echo $val
+ auR "$val"
+done
