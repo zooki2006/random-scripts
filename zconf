@@ -3,20 +3,22 @@
 
 
 # config
-STEAM_SDL_VIDEODRIVER=""
+#STEAM_SDL_VIDEODRIVER=""
 
 
 
 
 if [ -z "$WAYLAND_DISPLAY" ]
 then
-	dmenu="dmenu"
+	#dmenu="dmenu"
+	dmenu="bemenu"
 else
 	dmenu="bemenu"
 	wayland=1
 fi
 
-arg="$1"
+#arg="$1"
+#args="$@"
 
 
 # add --help to all scripts
