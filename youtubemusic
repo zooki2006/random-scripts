@@ -1,0 +1,2 @@
+#!/bin/sh
+yt-dlp -f bestaudio --extract-audio --embed-thumbnail --add-metadata "$1"
