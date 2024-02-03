@@ -1,4 +1,8 @@
 #!/bin/sh
+scriptname="zukice"
+scriptdisc="script to freeze wayland(sway) programs"
+source zconf
+
 pid="$(swaymsg -t get_tree | jq '.. | select(.type?) | select(.focused==true) | .pid')"
 set -- $(ps -p "$pid" -o stat)
 if [ "$2" = "Tl" ] || [ "$2" = "T<l" ]
