@@ -1,0 +1,6 @@
+#!/bin/sh
+
+for i in $(seq 1 255)
+do
+	echo "$(tput setaf $i) test colour $i"
+done
