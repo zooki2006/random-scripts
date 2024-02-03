@@ -1,0 +1,6 @@
+#!/bin/sh
+swaymsg mark zukiold
+swaymsg '[app_id=com.obsproject.Studio]' focus
+wtype -k f10
+swaymsg '[con_mark=zukiold]' focus
+swaymsg unmark zukiold

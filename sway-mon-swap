@@ -1,0 +1,21 @@
+#!/bin/sh
+msgtool(){
+echo $@
+swaymsg $@
+}
+OUTPUT2="$1"
+if [ -z "$OUTPUT2" ]
+then
+	exit
+fi
+#notify-send "$OUTPUT2"
+msgtool workspace number 11
+msgtool workspace number 1
+msgtool '[workspace="7"]' move workspace to output $OUTPUT2
+msgtool '[workspace="8"]' move workspace to output $OUTPUT2
+msgtool '[workspace="9"]' move workspace to output $OUTPUT2
+msgtool '[workspace="10"]' move workspace to output $OUTPUT2
+msgtool workspace 7 output $OUTPUT2
+msgtool workspace 8 output $OUTPUT2
+msgtool workspace 9 output $OUTPUT2
+msgtool workspace 10 output $OUTPUT2

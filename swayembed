@@ -1,0 +1,43 @@
+#!/bin/sh
+export swayembed="/tmp/waylandembed"
+# clear file $swayembed
+echo "" > "$swayembed"
+if [ -z "$XDG_CONFIG_HOME" ]
+then
+	XDG_CONFIG_HOME="$HOME/.config/"
+fi
+swayconfig="$XDG_CONFIG_HOME/sway/embed"
+# launch sway with sway embed config
+if [ -n "$1" ]
+then
+sway --unsupported-gpu --config $swayconfig &
+swayembedpid="$!"
+else
+sway --unsupported-gpu --config $swayconfig
+fi
+
+until [ -n "$(cat "$swayembed")" ]
+do
+	sleep 0.1
+done
+# source $swayembed a script created by sway to give this script the right vars
+. "$swayembed"
+# make a background loop to kill sway when the window closes
+while true	
+do
+	swayout="$(swaymsg -t get_outputs | wc -l)"
+	if [ "$swayout" = "2" ]
+	then
+		kill "$swayembedpid"
+		exit
+	fi
+	sleep 0.5 
+done & 
+swayloop="$!"
+if [ -n "$1" ]
+then
+$@
+fi
+kill "$swayembedpid"  
+kill "$swayloop"
+exit 0

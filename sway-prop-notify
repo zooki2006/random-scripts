@@ -1,0 +1,12 @@
+#!/bin/sh
+
+#tree=$(swaymsg -t get_tree | jq '.. | select(.type?) | select(.focused==true)')
+
+#TMP=/tmp/sway-prop-$$.tmp
+
+#trap 'rm $TMP' EXIT
+
+#swaymsg -t get_tree | jq '.. | select(.type?) | select(.focused==true)' > "$TMP"
+
+echo "$(swaymsg -t get_tree | jq '.. | select(.type?) | select(.focused==true) | .app_id,.name,.pid,.shell')"
+
