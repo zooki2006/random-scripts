@@ -4,5 +4,8 @@ scriptdisc='script to launch steam with no browser mini ui'
 . zconf
 
 
-export SDL_VIDEODRIVER="$STEAM_SDL_VIDEODRIVER"
+#export SDL_VIDEODRIVER="$STEAM_SDL_VIDEODRIVER"
+swhdir="$HOME/.local/share/Steam/ubuntu12_64/steamwebhelper"
+chmod -x "$swhdir" 
 steam -no-browser +open steam://open/minigameslist
+chmod +x "$swhdir" 
