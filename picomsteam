@@ -1,0 +1,25 @@
+#!/bin/sh
+steamreaper="reaper"
+#steamreaper="st"
+checkforgame() {
+while pgrep -x "$steamreaper" > /dev/null
+do
+	echo "steam game running"
+	sleep 0.5
+done
+}
+if pgrep -x "picom" > /dev/null
+then
+	if pgrep -x "$steamreaper" > /dev/null
+	then
+		notify-send "game running killing picom"
+		pkill -x picom
+		checkforgame
+		echo "launching picom"
+		if ! pgrep -x "picom" > /dev/null
+		then
+			notify-send "restarting picom"
+			picom
+		fi
+	fi
+fi
