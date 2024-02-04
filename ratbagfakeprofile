@@ -1,6 +1,13 @@
 #!/bin/sh
 mouseid="cheering-viscacha"
 
+#how to use.
+#step 1 add to your wm/de
+#mutiable keybinds something like "leftalt + leftwinkey + number" for every number between 1-9 and make the keybind launch with script with the arg profile[num] were [num] is the same as the number used in the bind
+#then make sure the "macro +KEY_LEFTALT +KEY_LEFTMETA KEY_2 -KEY_LEFTALT -KEY_LEFTMETA" are formated the same as the binds
+#then run the shortcut and button 5 on your mouse should sycle profiles writen bellow on the mouse 
+
+
 #Button: 0 is mapped to 'button 1' left mouse
 #Button: 1 is mapped to 'button 2' right mouse
 #Button: 2 is mapped to 'button 3' middle mouse
