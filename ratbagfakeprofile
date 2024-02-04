@@ -1,0 +1,31 @@
+#!/bin/sh
+mouseid="cheering-viscacha"
+
+#Button: 0 is mapped to 'button 1' left mouse
+#Button: 1 is mapped to 'button 2' right mouse
+#Button: 2 is mapped to 'button 3' middle mouse
+#Button: 3 is mapped to 'button 4' side top
+#Button: 4 is mapped to 'button 5' side bottom
+
+defaultprofile() {
+notify-send "loading defaults"
+ratbagctl "$mouseid" button 0 action set button 1
+ratbagctl "$mouseid" button 1 action set button 2
+ratbagctl "$mouseid" button 2 action set button 3
+ratbagctl "$mouseid" button 3 action set button 4
+ratbagctl "$mouseid" button 4 action set button 5
+}
+
+profile1() {
+defaultprofile
+notify-send "profile switch 1"
+ratbagctl "$mouseid" button 5 action set macro +KEY_LEFTALT +KEY_LEFTMETA KEY_2 -KEY_LEFTALT -KEY_LEFTMETA
+}
+profile2() {
+defaultprofile
+notify-send "profile switch 2"
+ratbagctl "$mouseid" button 0 action set macro KEY_J
+ratbagctl "$mouseid" button 1 action set macro KEY_K
+ratbagctl "$mouseid" button 5 action set macro +KEY_LEFTALT +KEY_LEFTMETA KEY_1 -KEY_LEFTALT -KEY_LEFTMETA
+}
+$1
