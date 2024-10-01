@@ -55,7 +55,7 @@ else
 	USERMENU="$@"
 fi
 
-launch="$(printf "$test\n$EXTRAOPTIONS" | sort | "$USERMENU")"
+launch="$(printf "$test\n$EXTRAOPTIONS" | sort | $USERMENU)"
 
 set -- $launch
 arg1=($launch)
