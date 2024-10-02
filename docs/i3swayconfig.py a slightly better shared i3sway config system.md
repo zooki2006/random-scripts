@@ -40,6 +40,11 @@ bindsym $mod+q kill
 
 Its also posable to swap between shared/swayconfig/i3config modes almost endless times.
 
+## known bugs/flaws
+
+### mode switching picky
+mode switching with [i3config]/[swayconfig]/[shared] only works if the line exactly matches [i3config]/[swayconfig]/[shared]  even a space, indentation or a comment will stop it from working.
+
 ## extras
 if you want to you could rebind i3/sway reload to a script that runs i3swayconfig.py then runs i3/sway reload for a more seemless exprence.
 
